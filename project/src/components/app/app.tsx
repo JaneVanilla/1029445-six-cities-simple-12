@@ -6,18 +6,20 @@ import Main from'../../pages/main/main';
 import NotFoundScreen from'../../pages/not-found-screen/not-found-screen';
 import Login from'../../pages/login/login';
 import Room from'../../pages/room/room';
+import {Offers} from '../../types/offers';
 
 type AppProps = {
-  offers: number;
+  offers: Offers;
+  placesCount: number;
 }
 
-function App({offers}: AppProps): JSX.Element {
+function App({offers, placesCount}: AppProps): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
           <Route path='/'>
-            <Route index element={<Main offers={offers}/>}></Route>
+            <Route index element={<Main offers={offers} placesCount={placesCount}/>}/>
             <Route path={AppRoute.Login}
               element={
                 <PrivateRoute
