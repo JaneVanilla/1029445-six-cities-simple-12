@@ -16,9 +16,9 @@ export default function OfferFullInfo({offers, reviews}: OfferFullInfoProps) {
   const currentOffer = offers.find((offer) => offer.id === +id);
   //const currentOfferId = currentOffer?.id;
   //console.log('currentOffer', currentOfferId);
-  const goodsList = currentOffer?.goods.map((good,index) => <li key={offers[index].id} className='property__inside-item'>{good}</li>);
-  const galleryItems = currentOffer?.images.map((img,index) => (
-    <div key={offers[index].id} className='property__image-wrapper'><img className='property__image' src={img} alt='Photo studio'/></div>)
+  const goodsList = currentOffer?.goods.map((good) => <li key={`${currentOffer.id}-${good}`} className='property__inside-item'>{good}</li>);
+  const galleryItems = currentOffer?.images.map((img) => (
+    <div key={`${currentOffer.id}-${img}`} className='property__image-wrapper'><img className='property__image' src={img} alt='Photo studio'/></div>)
   );
   return (
     <section className="property">
