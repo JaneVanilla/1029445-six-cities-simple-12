@@ -12,8 +12,8 @@ export default function ReviewsForm({reviews}:ReviewsFormProps) {
     const value = evt.target.value;
     const name = evt.target.name;
     setFormData({...formData, [name]: value});
-    console.log(evt.target);
-    console.log(formData);
+    //console.log(evt.target);
+    //console.log(formData);
   };
 
   const textAreaChange = (evt: ChangeEvent<HTMLTextAreaElement>) => {
