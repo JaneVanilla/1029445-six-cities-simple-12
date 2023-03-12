@@ -16,9 +16,9 @@ export default function OfferFullInfo({offers, reviews}: OfferFullInfoProps) {
   const currentOffer = offers.find((offer) => offer.id === +id);
   //const currentOfferId = currentOffer?.id;
   //console.log('currentOffer', currentOfferId);
-  const goodsList = currentOffer?.goods.map((good,index) => <li key={`${index}-${good}`} className='property__inside-item'>{good}</li>);
+  const goodsList = currentOffer?.goods.map((good,index) => <li key={offers[index].id} className='property__inside-item'>{good}</li>);
   const galleryItems = currentOffer?.images.map((img,index) => (
-    <div key={`${index}-${img}`} className='property__image-wrapper'><img className='property__image' src={img} alt='Photo studio'/></div>)
+    <div key={offers[index].id} className='property__image-wrapper'><img className='property__image' src={img} alt='Photo studio'/></div>)
   );
   return (
     <section className="property">
@@ -93,8 +93,8 @@ export default function OfferFullInfo({offers, reviews}: OfferFullInfoProps) {
             <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span>
             </h2>
             <ul className="reviews__list">
-              {reviews.map((review, index) => (
-                <li key={index} className="reviews__item">
+              {reviews.map((review) => (
+                <li key={review.id} className="reviews__item">
                   <div className="reviews__user user">
                     <div className="reviews__avatar-wrapper user__avatar-wrapper">
                       <img className="reviews__avatar user__avatar" src={review.user.avatarUrl} width="54" height="54"
