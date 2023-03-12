@@ -16,10 +16,10 @@ export default function OfferFullInfo({offers, reviews}: OfferFullInfoProps) {
   const currentOffer = offers.find((offer) => offer.id === +id);
   //const currentOfferId = currentOffer?.id;
   //console.log('currentOffer', currentOfferId);
-  const goodsList = currentOffer?.goods.map((good,index) => <li key={index} className='property__inside-item'>{good}</li>);
-  const galleryItems = currentOffer?.images.map((img,index) => (<div key={index} className='property__image-wrapper'>
-    <img className='property__image' src={img} alt='Photo studio'/>
-  </div>));
+  const goodsList = currentOffer?.goods.map((good,index) => <li key={`${index}-${good}`} className='property__inside-item'>{good}</li>);
+  const galleryItems = currentOffer?.images.map((img,index) => (
+    <div key={`${index}-${img}`} className='property__image-wrapper'><img className='property__image' src={img} alt='Photo studio'/></div>)
+  );
   return (
     <section className="property">
       <div className="property__gallery-container container">
@@ -71,16 +71,16 @@ export default function OfferFullInfo({offers, reviews}: OfferFullInfoProps) {
             <div className="property__host-user user">
               <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
                 <img className="property__avatar user__avatar" src={currentOffer?.host.avatarUrl} width="74" height="74"
-                     alt="Host avatar"
+                  alt="Host avatar"
                 />
               </div>
               <span className="property__user-name">
-                  {currentOffer?.host.name}
-                </span>
+                {currentOffer?.host.name}
+              </span>
               {currentOffer?.host.isPro &&
               <span className="property__user-status">
                     Pro
-                </span>}
+              </span>}
             </div>
             <div className="property__description">
               <p className="property__text">
@@ -93,30 +93,32 @@ export default function OfferFullInfo({offers, reviews}: OfferFullInfoProps) {
             <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span>
             </h2>
             <ul className="reviews__list">
-              {reviews.map((review, index) => <li key={index} className="reviews__item">
-                <div className="reviews__user user">
-                  <div className="reviews__avatar-wrapper user__avatar-wrapper">
-                    <img className="reviews__avatar user__avatar" src={review.user.avatarUrl} width="54" height="54"
-                         alt="Reviews avatar"
-                    />
-                  </div>
-                  <span className="reviews__user-name">
-                        {review.user.name}
-                      </span>
-                </div>
-                <div className="reviews__info">
-                  <div className="reviews__rating rating">
-                    <div className="reviews__stars rating__stars">
-                      <span style={{width: '80%'}}></span>
-                      <span className="visually-hidden">Rating</span>
+              {reviews.map((review, index) => (
+                <li key={index} className="reviews__item">
+                  <div className="reviews__user user">
+                    <div className="reviews__avatar-wrapper user__avatar-wrapper">
+                      <img className="reviews__avatar user__avatar" src={review.user.avatarUrl} width="54" height="54"
+                        alt="Reviews avatar"
+                      />
                     </div>
+                    <span className="reviews__user-name">
+                      {review.user.name}
+                    </span>
                   </div>
-                  <p className="reviews__text">
-                    {review.comment}
-                  </p>
-                  <time className="reviews__time" dateTime="2019-04-24">{review.date}</time>
-                </div>
-              </li>)}
+                  <div className="reviews__info">
+                    <div className="reviews__rating rating">
+                      <div className="reviews__stars rating__stars">
+                        <span style={{width: '80%'}}></span>
+                        <span className="visually-hidden">Rating</span>
+                      </div>
+                    </div>
+                    <p className="reviews__text">
+                      {review.comment}
+                    </p>
+                    <time className="reviews__time" dateTime="2019-04-24">{review.date}</time>
+                  </div>
+                </li>
+              ))}
             </ul>
             <ReviewsForm reviews={reviews}/>
           </section>

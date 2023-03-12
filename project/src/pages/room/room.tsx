@@ -2,7 +2,6 @@ import {Helmet} from 'react-helmet-async';
 import {Link} from'react-router-dom';
 import Logo from '../../components/logo/logo';
 import {Offers} from '../../types/offers';
-import {Offer} from '../../types/offers';
 import {Reviews} from '../../types/reviews';
 import OfferFullInfo from '../../components/offer-full-info/offer-full-info';
 
@@ -11,8 +10,7 @@ type RoomProps = {
   reviews: Reviews;
 }
 export default function Room({offers, reviews}: RoomProps) {
-  const offerIdArray = offers.map((offer: Offer) => offer.id);
-  console.log(offerIdArray);
+  //console.log(offerIdArray);
   return (
     <div className="page">
       <Helmet>
