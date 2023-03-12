@@ -7,13 +7,15 @@ import NotFoundScreen from'../../pages/not-found-screen/not-found-screen';
 import Login from'../../pages/login/login';
 import Room from'../../pages/room/room';
 import {Offers} from '../../types/offers';
+import {Reviews} from '../../types/reviews';
 
 type AppProps = {
   offers: Offers;
+  reviews: Reviews;
   placesCount: number;
 }
 
-function App({offers, placesCount}: AppProps): JSX.Element {
+function App({offers,reviews, placesCount}: AppProps): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
@@ -30,7 +32,7 @@ function App({offers, placesCount}: AppProps): JSX.Element {
               }
             >
             </Route>
-            <Route path={AppRoute.Room} element={<Room/>}></Route>
+            <Route path={AppRoute.Room} element={<Room offers={offers} reviews={reviews} />}></Route>
             <Route path='*' element={<NotFoundScreen/>}></Route>
           </Route>
         </Routes>

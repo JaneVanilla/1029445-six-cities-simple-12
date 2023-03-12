@@ -2,16 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d16e5a1-7b6a-4b6e-8dde-8710c946b82b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/project/src/components/offers-list/offers-list.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/src/components/reviews-form/reviews-form.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/src/mocks/offers.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/src/types/offers.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/src/components/offer-full-info/offer-full-info.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/src/mocks/reviews.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/src/types/reviews.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/.env.example" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/project/src/components/app/app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/components/app/app.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/src/components/card/card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/components/card/card.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/components/offers-list/offers-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/components/offers-list/offers-list.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/components/reviews-form/reviews-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/components/reviews-form/reviews-form.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/mocks/offers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/mocks/offers.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/src/pages/main/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/pages/main/main.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/pages/room/room.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/pages/room/room.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/types/offers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/types/offers.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,8 +24,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -36,6 +39,9 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="1" />
   </component>
   <component name="ProjectId" id="2MPNTUA3B0JdlhFzF27avnivrNV" />
   <component name="ProjectViewState">
@@ -69,7 +75,7 @@
       <workItem from="1677665267232" duration="1050000" />
       <workItem from="1677666333815" duration="33000" />
       <workItem from="1677666369141" duration="265000" />
-      <workItem from="1678400027141" duration="30383000" />
+      <workItem from="1678400027141" duration="66337000" />
     </task>
     <servers />
   </component>
@@ -93,7 +99,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/project/src/components/reviews-form/reviews-form.tsx</url>
-          <line>5</line>
+          <line>31</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
