@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d16e5a1-7b6a-4b6e-8dde-8710c946b82b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/project/public/img/apartment-011.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/src/components/review-input/review-input.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/components/offer-full-info/offer-full-info.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/components/offer-full-info/offer-full-info.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/mocks/offers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/mocks/offers.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/components/card/card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/components/card/card.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/components/offers-list/offers-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/components/offers-list/offers-list.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/components/reviews-form/reviews-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/components/reviews-form/reviews-form.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,8 +16,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript JSX File" />
         <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -31,9 +32,6 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
-  <component name="ProblemsViewState">
-    <option name="selectedIndex" value="1" />
-  </component>
   <component name="ProjectId" id="2MPNTUA3B0JdlhFzF27avnivrNV" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -43,7 +41,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/project/public/img" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -67,7 +65,10 @@
       <workItem from="1677665267232" duration="1050000" />
       <workItem from="1677666333815" duration="33000" />
       <workItem from="1677666369141" duration="265000" />
-      <workItem from="1678400027141" duration="68998000" />
+      <workItem from="1678400027141" duration="69635000" />
+      <workItem from="1678699476077" duration="611000" />
+      <workItem from="1678871746700" duration="24000" />
+      <workItem from="1678891284764" duration="8983000" />
     </task>
     <servers />
   </component>
@@ -85,17 +86,5 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/project/src/components/reviews-form/reviews-form.tsx</url>
-          <line>31</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 type CardProps = {
   offer: Offer;
   onMouseOverHandler:() => void;
-  activeCard: string;
+  activeCard: number;
 }
 
 export default function Card({offer,onMouseOverHandler, activeCard}: CardProps) {
@@ -20,7 +20,7 @@ export default function Card({offer,onMouseOverHandler, activeCard}: CardProps) 
           />
         </Link>
       </div>
-      <div className={`${+activeCard === offer.id ? 'active' : 'disactive'}`}></div>
+      <div className={`${activeCard === offer.id ? 'active' : 'disactive'}`}></div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
