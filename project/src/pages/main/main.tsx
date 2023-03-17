@@ -1,17 +1,38 @@
 import {Helmet} from 'react-helmet-async';
 import Logo from '../../components/logo/logo';
 import {Link} from'react-router-dom';
-import {Offers} from '../../types/offers';
+import {Offers,Offer} from '../../types/offers';
 import OffersList from '../../components/offers-list/offers-list';
+import {City} from '../../types/city';
+import Map from '../../components/map/map';
+import {useState} from 'react';
 
 type MainSreenProps = {
   offers: Offers;
   placesCount: number;
+  city: City;
+  points: Offers;
 }
 
-export default function Main({offers, placesCount}: MainSreenProps) {
+export default function Main({offers, placesCount, city, points}: MainSreenProps) {
+
+  const [selectedPoint, setSelectedPoint] = useState<Offer | undefined>(
+    undefined
+  );
+  const onListItemHover = (listItemName: number) => {
+    const currentPoint = points.find((point) => point.id === listItemName);
+    setSelectedPoint(currentPoint);
+    // eslint-disable-next-line no-console
+    console.log('current point', currentPoint?.city.name);
+    // eslint-disable-next-line no-console
+    //console.log('active point',selectedPoint?.city.name);
+    // eslint-disable-next-line no-console
+    //console.log('compare',selectedPoint?.city.name === currentPoint?.city.name);
+  };
+
   return (
     <div className="page page--gray page--main">
+
       <Helmet>
         <title>Six cities. Choose place to stay.</title>
       </Helmet>
@@ -116,10 +137,10 @@ export default function Main({offers, placesCount}: MainSreenProps) {
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-              <OffersList offers={offers} />
+              <OffersList offers={offers} onListItemHover={onListItemHover}/>
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <Map city={city} offers={offers} selectedPoint={selectedPoint}/>
             </div>
           </div>
         </div>

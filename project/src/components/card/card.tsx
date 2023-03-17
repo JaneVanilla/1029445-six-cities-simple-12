@@ -7,6 +7,7 @@ type CardProps = {
 }
 
 export default function Card({offer,onMouseOverHandler, activeCard}: CardProps) {
+
   return (
     <article id={offer.id.toString()} className="cities__card place-card" onMouseOver={onMouseOverHandler}>
       {offer.isPremium &&
