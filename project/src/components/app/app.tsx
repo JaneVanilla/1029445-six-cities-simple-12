@@ -15,16 +15,15 @@ type AppProps = {
   reviews: Reviews;
   placesCount: number;
   city: City;
-  points: Offers;
 }
 
-function App({offers,reviews, placesCount,city,points}: AppProps): JSX.Element {
+function App({offers,reviews, placesCount,city}: AppProps): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
           <Route path='/'>
-            <Route index element={<Main city={city} points={points} offers={offers} placesCount={placesCount}/>}/>
+            <Route index element={<Main city={city} offers={offers} placesCount={placesCount}/>}/>
             <Route path={AppRoute.Login}
               element={
                 <PrivateRoute

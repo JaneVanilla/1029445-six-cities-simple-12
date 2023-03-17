@@ -15,6 +15,6 @@ const Setting = {
 
 root.render(
   <React.StrictMode>
-    <App city={CITY} points={offers} offers={offers} reviews={reviews} placesCount={Setting.placesCount}/>
+    <App city={CITY} offers={offers} reviews={reviews} placesCount={Setting.placesCount}/>
   </React.StrictMode>,
 );

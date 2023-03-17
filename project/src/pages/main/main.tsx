@@ -11,16 +11,15 @@ type MainSreenProps = {
   offers: Offers;
   placesCount: number;
   city: City;
-  points: Offers;
 }
 
-export default function Main({offers, placesCount, city, points}: MainSreenProps) {
+export default function Main({offers, placesCount, city}: MainSreenProps) {
 
   const [selectedPoint, setSelectedPoint] = useState<Offer | undefined>(
     undefined
   );
   const onListItemHover = (listItemName: number) => {
-    const currentPoint = points.find((point) => point.id === listItemName);
+    const currentPoint = offers.find((point) => point.id === listItemName);
     setSelectedPoint(currentPoint);
     // eslint-disable-next-line no-console
     console.log('current point', currentPoint?.city.name);
