@@ -15,9 +15,7 @@ type MainSreenProps = {
 }
 
 export default function Main({offers, placesCount, city}: MainSreenProps) {
-
   const [activeCard, setActiveCard] = useState<number | null>(null);
-
   return (
     <div className="page page--gray page--main">
 
