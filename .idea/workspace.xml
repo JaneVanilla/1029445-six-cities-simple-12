@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d16e5a1-7b6a-4b6e-8dde-8710c946b82b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/project/src/components/navigation/navigation.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/src/components/tabs/tabs.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/components/card/card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/components/card/card.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/src/components/map/map.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/components/map/map.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/components/offers-list/offers-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/components/offers-list/offers-list.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/src/pages/main/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/pages/main/main.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,7 +38,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../intensive-design-demo" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/project/src/components" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -43,6 +47,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\janev\Documents\Work\HTMLAcademy\1029445-six-cities-simple-12\project\src\components" />
       <recent name="C:\Users\janev\Documents\Work\HTMLAcademy\1029445-six-cities-simple-12\project" />
     </key>
   </component>
@@ -57,7 +62,7 @@
       <workItem from="1677665267232" duration="1050000" />
       <workItem from="1677666333815" duration="33000" />
       <workItem from="1677666369141" duration="265000" />
-      <workItem from="1679041453153" duration="36047000" />
+      <workItem from="1679041453153" duration="41403000" />
     </task>
     <servers />
   </component>
