@@ -23,5 +23,6 @@ yarn-error.log*
 
 # editors
 .idea
+.idea/workspace.xml
 *.sublime*
 .vscode
