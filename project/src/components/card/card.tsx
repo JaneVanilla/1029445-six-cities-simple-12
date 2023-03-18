@@ -3,10 +3,10 @@ import {Link} from 'react-router-dom';
 type CardProps = {
   offer: Offer;
   onMouseOverHandler:() => void;
-  activeCard: number;
 }
 
-export default function Card({offer,onMouseOverHandler, activeCard}: CardProps) {
+export default function Card({offer,onMouseOverHandler}: CardProps) {
+
   return (
     <article id={offer.id.toString()} className="cities__card place-card" onMouseOver={onMouseOverHandler}>
       {offer.isPremium &&
@@ -20,7 +20,6 @@ export default function Card({offer,onMouseOverHandler, activeCard}: CardProps) 
           />
         </Link>
       </div>
-      <div className={`${activeCard === offer.id ? 'active' : 'disactive'}`}></div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
