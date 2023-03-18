@@ -23,10 +23,6 @@ export default function Main({offers, placesCount, city}: MainSreenProps) {
     setSelectedPoint(currentPoint);
     // eslint-disable-next-line no-console
     console.log('current point', currentPoint?.city.name);
-    // eslint-disable-next-line no-console
-    //console.log('active point',selectedPoint?.city.name);
-    // eslint-disable-next-line no-console
-    //console.log('compare',selectedPoint?.city.name === currentPoint?.city.name);
   };
 
   return (
