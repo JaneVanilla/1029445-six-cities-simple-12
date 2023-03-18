@@ -9,6 +9,7 @@ type RoomProps = {
   offers: Offers;
   reviews: Reviews;
 }
+
 export default function Room({offers, reviews}: RoomProps) {
   //console.log(offerIdArray);
   return (
