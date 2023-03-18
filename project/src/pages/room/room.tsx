@@ -4,6 +4,7 @@ import Logo from '../../components/logo/logo';
 import {Offers} from '../../types/offers';
 import {Reviews} from '../../types/reviews';
 import OfferFullInfo from '../../components/offer-full-info/offer-full-info';
+import Navigation from '../../components/navigation/navigation';
 
 type RoomProps = {
   offers: Offers;
@@ -43,21 +44,7 @@ export default function Room({offers, reviews}: RoomProps) {
             <div className="header__left">
               <Logo/>
             </div>
-            <nav className="header__nav">
-              <ul className="header__nav-list">
-                <li className="header__nav-item user">
-                  <div className="header__nav-profile">
-                    <div className="header__avatar-wrapper user__avatar-wrapper"></div>
-                    <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                  </div>
-                </li>
-                <li className="header__nav-item">
-                  <Link className="header__nav-link" to="/">
-                    <span className="header__signout">Sign out</span>
-                  </Link>
-                </li>
-              </ul>
-            </nav>
+            <Navigation/>
           </div>
         </div>
       </header>
