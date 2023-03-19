@@ -1,17 +1,24 @@
 //import {useState} from 'react';
 import {Offers} from '../../types/offers';
+import {OffersNearby} from '../../types/offersNearby';
 import Card from '../card/card';
 
+
 type OffersListType = {
-  offers: Offers;
+  offersOpcion: Offers | OffersNearby;
   onListItemHover: (listItemName: number) => void;
   selectedPoint: number | null;
+  classesName: {
+    list: string;
+    item: string;
+    image: string;
+  };
 }
-export default function OffersList({offers,onListItemHover,selectedPoint}:OffersListType) {
+export default function OffersList({offersOpcion,onListItemHover,selectedPoint,classesName}:OffersListType) {
   return (
-    <div className="cities__places-list places__list tabs__content" id={selectedPoint?.toString()}>
+    <div className={`places__list ${classesName.list}`} id={selectedPoint?.toString()}>
       {/* eslint-disable-next-line no-unused-expressions */}
-      {offers.map((offer,index) => <Card offer={offer} key={offer.id} onMouseOverHandler={()=>{onListItemHover(offer.id);}}/>
+      {offersOpcion.map((offer,index) => <Card classesName={classesName} offer={offer} key={offer.id} onMouseOverHandler={()=>{onListItemHover(offer.id);}}/>
       )}
     </div>
   );

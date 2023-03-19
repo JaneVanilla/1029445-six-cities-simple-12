@@ -1,6 +1,6 @@
 import {Helmet} from 'react-helmet-async';
 import {Link} from'react-router-dom';
-import Logo from '../../components/logo/logo';
+import Header from '../../components/header/header';
 
 export default function Login() {
   return (
@@ -28,15 +28,7 @@ export default function Login() {
         </svg>
       </div>
 
-      <header className="header">
-        <div className="container">
-          <div className="header__wrapper">
-            <div className="header__left">
-              <Logo/>
-            </div>
-          </div>
-        </div>
-      </header>
+      <Header/>
 
       <main className="page__main page__main--login">
         <div className="page__login-container container">

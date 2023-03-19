@@ -1,21 +1,27 @@
 import {Offers} from '../../types/offers';
-import {Reviews} from '../../types/reviews';
 import ReviewsForm from '../reviews-form/reviews-form';
 import {useParams} from 'react-router-dom';
+import ReviewsList from '../reviews-list/reviews-list';
+import {Reviews} from '../../types/reviews';
+import {City} from '../../types/city';
+import Map from '../../components/map/map';
+import {OffersNearby} from '../../types/offersNearby';
 
 type OfferFullInfoProps = {
   offers: Offers;
   reviews: Reviews;
+  city: City;
+  activeCard: null | number;
+  offersOpcion: OffersNearby;
 }
 type OfferItemParams = {
   id: string;
 }
-export default function OfferFullInfo({offers, reviews}: OfferFullInfoProps) {
+export default function OfferFullInfo({offers, reviews, city, activeCard, offersOpcion}: OfferFullInfoProps) {
   const params = useParams<keyof OfferItemParams>() as OfferItemParams;
   const {id} = params;
+
   const currentOffer = offers.find((offer) => offer.id === +id);
-  //const currentOfferId = currentOffer?.id;
-  //console.log('currentOffer', currentOfferId);
   const goodsList = currentOffer?.goods.map((good) => <li key={`${currentOffer.id}-${good}`} className='property__inside-item'>{good}</li>);
   const galleryItems = currentOffer?.images.map((img) => (
     <div key={`${currentOffer.id}-${img}`} className='property__image-wrapper'><img className='property__image' src={img} alt='Photo studio'/></div>)
@@ -90,41 +96,15 @@ export default function OfferFullInfo({offers, reviews}: OfferFullInfoProps) {
           </div>
 
           <section className="property__reviews reviews">
-            <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span>
-            </h2>
-            <ul className="reviews__list">
-              {reviews.map((review) => (
-                <li key={review.id} className="reviews__item">
-                  <div className="reviews__user user">
-                    <div className="reviews__avatar-wrapper user__avatar-wrapper">
-                      <img className="reviews__avatar user__avatar" src={review.user.avatarUrl} width="54" height="54"
-                        alt="Reviews avatar"
-                      />
-                    </div>
-                    <span className="reviews__user-name">
-                      {review.user.name}
-                    </span>
-                  </div>
-                  <div className="reviews__info">
-                    <div className="reviews__rating rating">
-                      <div className="reviews__stars rating__stars">
-                        <span style={{width: '80%'}}></span>
-                        <span className="visually-hidden">Rating</span>
-                      </div>
-                    </div>
-                    <p className="reviews__text">
-                      {review.comment}
-                    </p>
-                    <time className="reviews__time" dateTime="2019-04-24">{review.date}</time>
-                  </div>
-                </li>
-              ))}
-            </ul>
+            <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
+            <ReviewsList reviews={reviews}/>
             <ReviewsForm reviews={reviews}/>
           </section>
         </div>
       </div>
-      <section className="property__map map"></section>
+      <section className="property__map map" style={{backgroundImage:'none', height:'auto'}}>
+        <Map city={city} offers={offersOpcion} selectedPoint={activeCard}/>
+      </section>
     </section>
   );
 }

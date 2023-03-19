@@ -3,17 +3,21 @@ import {Link} from 'react-router-dom';
 type CardProps = {
   offer: Offer;
   onMouseOverHandler:() => void;
+  classesName: {
+    item: string;
+    image: string;
+  };
 }
 
-export default function Card({offer,onMouseOverHandler}: CardProps) {
+export default function Card({offer,onMouseOverHandler, classesName}: CardProps) {
 
   return (
-    <article id={offer.id.toString()} className="cities__card place-card" onMouseOver={onMouseOverHandler}>
+    <article id={offer.id.toString()} className={`place-card ${classesName.item}`} onMouseOver={onMouseOverHandler}>
       {offer.isPremium &&
       <div className="place-card__mark">
         <span>Premium</span>
       </div>}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={`place-card__image-wrapper ${classesName.image}`}>
         <Link to={`offer/${offer.id}`}>
           <img className="place-card__image" src={offer.previewImage} width="260" height="200"
             alt="Place image"

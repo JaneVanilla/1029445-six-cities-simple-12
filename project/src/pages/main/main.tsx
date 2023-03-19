@@ -1,5 +1,4 @@
 import {Helmet} from 'react-helmet-async';
-import Logo from '../../components/logo/logo';
 import {Offers} from '../../types/offers';
 import OffersList from '../../components/offers-list/offers-list';
 import {City} from '../../types/city';
@@ -7,6 +6,7 @@ import Map from '../../components/map/map';
 import Navigation from '../../components/navigation/navigation';
 import Tabs from '../../components/tabs/tabs';
 import {useState} from 'react';
+import Header from '../../components/header/header';
 
 type MainSreenProps = {
   offers: Offers;
@@ -41,16 +41,7 @@ export default function Main({offers, placesCount, city}: MainSreenProps) {
           </symbol>
         </svg>
       </div>
-      <header className="header">
-        <div className="container">
-          <div className="header__wrapper">
-            <div className="header__left">
-              <Logo/>
-            </div>
-            <Navigation/>
-          </div>
-        </div>
-      </header>
+      <Header navigation={<Navigation/>}/>
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <Tabs/>
@@ -74,7 +65,7 @@ export default function Main({offers, placesCount, city}: MainSreenProps) {
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-              <OffersList offers={offers} onListItemHover={(id) => setActiveCard(id)} selectedPoint={activeCard}/>
+              <OffersList classesName={{list:'tabs__content cities__places-list',item:'cities__card',image:'cities__image-wrapper'}} offersOpcion={offers} onListItemHover={(id) => setActiveCard(id)} selectedPoint={activeCard}/>
             </section>
             <div className="cities__right-section">
               <Map city={city} offers={offers} selectedPoint={activeCard}/>

@@ -1,18 +1,24 @@
 import {Helmet} from 'react-helmet-async';
-import {Link} from'react-router-dom';
-import Logo from '../../components/logo/logo';
 import {Offers} from '../../types/offers';
 import {Reviews} from '../../types/reviews';
 import OfferFullInfo from '../../components/offer-full-info/offer-full-info';
 import Navigation from '../../components/navigation/navigation';
+import {City} from '../../types/city';
+import {useState} from 'react';
+import OffersList from '../../components/offers-list/offers-list';
+import {OffersNearby} from '../../types/offersNearby';
+import Header from '../../components/header/header';
 
 type RoomProps = {
   offers: Offers;
   reviews: Reviews;
+  city: City;
+  offersOpcion: OffersNearby;
 }
 
-export default function Room({offers, reviews}: RoomProps) {
-  //console.log(offerIdArray);
+export default function Room({offers, reviews, city, offersOpcion}: RoomProps) {
+  const [activeCard, setActiveCard] = useState<number | null>(null);
+
   return (
     <div className="page">
       <Helmet>
@@ -38,108 +44,14 @@ export default function Room({offers, reviews}: RoomProps) {
         </svg>
       </div>
 
-      <header className="header">
-        <div className="container">
-          <div className="header__wrapper">
-            <div className="header__left">
-              <Logo/>
-            </div>
-            <Navigation/>
-          </div>
-        </div>
-      </header>
+      <Header navigation={<Navigation/>}/>
 
       <main className="page__main page__main--property">
-        <OfferFullInfo offers={offers} reviews={reviews}/>
+        <OfferFullInfo offersOpcion={offersOpcion} offers={offers} reviews={reviews} city={city} activeCard={activeCard}/>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
-            <div className="near-places__list places__list">
-              <article className="near-places__card place-card">
-                <div className="near-places__image-wrapper place-card__image-wrapper">
-                  <Link to="/">
-                    <img className="place-card__image" src="img/room.jpg" width="260" height="200" alt="Place image"/>
-                  </Link>
-                </div>
-                <div className="place-card__info">
-                  <div className="place-card__price-wrapper">
-                    <div className="place-card__price">
-                      <b className="place-card__price-value">&euro;80</b>
-                      <span className="place-card__price-text">&#47;&nbsp;night</span>
-                    </div>
-                  </div>
-                  <div className="place-card__rating rating">
-                    <div className="place-card__stars rating__stars">
-                      <span style={{width: '80%'}}></span>
-                      <span className="visually-hidden">Rating</span>
-                    </div>
-                  </div>
-                  <h2 className="place-card__name">
-                    <Link to="/">Wood and stone place</Link>
-                  </h2>
-                  <p className="place-card__type">Private room</p>
-                </div>
-              </article>
-
-              <article className="near-places__card place-card">
-                <div className="near-places__image-wrapper place-card__image-wrapper">
-                  <Link to="/">
-                    <img className="place-card__image" src="img/apartment-02.jpg" width="260" height="200"
-                      alt="Place image"
-                    />
-                  </Link>
-                </div>
-                <div className="place-card__info">
-                  <div className="place-card__price-wrapper">
-                    <div className="place-card__price">
-                      <b className="place-card__price-value">&euro;132</b>
-                      <span className="place-card__price-text">&#47;&nbsp;night</span>
-                    </div>
-                  </div>
-                  <div className="place-card__rating rating">
-                    <div className="place-card__stars rating__stars">
-                      <span style={{width: '80%'}}></span>
-                      <span className="visually-hidden">Rating</span>
-                    </div>
-                  </div>
-                  <h2 className="place-card__name">
-                    <Link to="/">Canal View Prinsengracht</Link>
-                  </h2>
-                  <p className="place-card__type">Apartment</p>
-                </div>
-              </article>
-
-              <article className="near-places__card place-card">
-                <div className="place-card__mark">
-                  <span>Premium</span>
-                </div>
-                <div className="near-places__image-wrapper place-card__image-wrapper">
-                  <Link to="/">
-                    <img className="place-card__image" src="img/apartment-03.jpg" width="260" height="200"
-                      alt="Place image"
-                    />
-                  </Link>
-                </div>
-                <div className="place-card__info">
-                  <div className="place-card__price-wrapper">
-                    <div className="place-card__price">
-                      <b className="place-card__price-value">&euro;180</b>
-                      <span className="place-card__price-text">&#47;&nbsp;night</span>
-                    </div>
-                  </div>
-                  <div className="place-card__rating rating">
-                    <div className="place-card__stars rating__stars">
-                      <span style={{width: '100%'}}></span>
-                      <span className="visually-hidden">Rating</span>
-                    </div>
-                  </div>
-                  <h2 className="place-card__name">
-                    <Link to="/">Nice, cozy, warm big bed apartment</Link>
-                  </h2>
-                  <p className="place-card__type">Apartment</p>
-                </div>
-              </article>
-            </div>
+            <OffersList offersOpcion={offersOpcion} onListItemHover={(id) => setActiveCard(id)} selectedPoint={activeCard} classesName={{list:'near-places__list',item:'near-places__card',image:'near-places__image-wrapper'}}></OffersList>
           </section>
         </div>
       </main>
