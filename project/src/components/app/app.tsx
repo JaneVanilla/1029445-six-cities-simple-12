@@ -9,15 +9,17 @@ import Room from'../../pages/room/room';
 import {Offers} from '../../types/offers';
 import {Reviews} from '../../types/reviews';
 import {City} from '../../types/city';
+import {OffersNearby} from '../../types/offersNearby';
 
 type AppProps = {
   offers: Offers;
   reviews: Reviews;
   placesCount: number;
   city: City;
+  offersOpcion: OffersNearby;
 }
 
-function App({offers,reviews, placesCount,city}: AppProps): JSX.Element {
+function App({offers,reviews, placesCount,city, offersOpcion}: AppProps): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
@@ -34,7 +36,7 @@ function App({offers,reviews, placesCount,city}: AppProps): JSX.Element {
               }
             >
             </Route>
-            <Route path={AppRoute.Room} element={<Room offers={offers} reviews={reviews} />}></Route>
+            <Route path={AppRoute.Room} element={<Room offers={offers} offersOpcion={offersOpcion} reviews={reviews} city={city}/>}></Route>
             <Route path='*' element={<NotFoundScreen/>}></Route>
           </Route>
         </Routes>
