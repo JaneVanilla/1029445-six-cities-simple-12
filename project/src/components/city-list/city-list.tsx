@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom';
 
-export default function Tabs() {
+export default function CityList() {
   return (
     <div className="tabs">
       <section className="locations container">

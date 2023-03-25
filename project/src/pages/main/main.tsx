@@ -4,7 +4,7 @@ import OffersList from '../../components/offers-list/offers-list';
 import {City} from '../../types/city';
 import Map from '../../components/map/map';
 import Navigation from '../../components/navigation/navigation';
-import Tabs from '../../components/tabs/tabs';
+import CityList from '../../components/city-list/city-list';
 import {useState} from 'react';
 import Header from '../../components/header/header';
 
@@ -44,7 +44,7 @@ export default function Main({offers, placesCount, city}: MainSreenProps) {
       <Header navigation={<Navigation/>}/>
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
-        <Tabs/>
+        <CityList/>
         <div className="cities">
           <div className="cities__places-container container">
             <section className="cities__places places">

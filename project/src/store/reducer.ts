@@ -1,9 +1,8 @@
 import {createReducer} from '@reduxjs/toolkit';
 import {changeCity, completeList} from './action';
-import {CITY} from '../mocks/city';
 
 const initialState = {
-  city: CITY.title,
+  city: 'Paris',
   locations: ['Paris','Cologne','Brussels','Amstergam','Hamburg','Dusseldorf'],
   mistakes: 0,
 };
@@ -11,7 +10,7 @@ const initialState = {
 const reducer = createReducer(initialState, (builder) => {
   builder
     .addCase(changeCity, (state) => {
-      state.city = 'Paris';
+      state.city = 'Cologne';
     })
     .addCase(completeList, (state) => {
       state.locations = ['Paris','Cologne','Brussels','Amstergam','Hamburg','Dusseldorf'];
