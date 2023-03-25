@@ -5,7 +5,7 @@ import App from './components/app/app';
 import {offers} from './mocks/offers';
 import {offersNearby} from './mocks/offers-nearby';
 import {reviews} from './mocks/reviews';
-import {CITY} from './mocks/city';
+import {CITY, CityOffers} from './mocks/city';
 import {store} from './store';
 
 const root = ReactDOM.createRoot(
@@ -19,7 +19,7 @@ const Setting = {
 root.render(
   <React.StrictMode>
     <Provider store = {store}>
-      <App city={CITY} offers={offers} offersOpcion={offersNearby} reviews={reviews} placesCount={Setting.placesCount}/>
+      <App arrayOfCities={CityOffers} city={CITY} offers={offers} offersOpcion={offersNearby} reviews={reviews} placesCount={Setting.placesCount}/>
     </Provider>
   </React.StrictMode>,
 );

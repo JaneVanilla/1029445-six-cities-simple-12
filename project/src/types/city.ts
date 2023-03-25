@@ -4,3 +4,4 @@ export type City = {
   lng: number;
   zoom: number;
 }
+

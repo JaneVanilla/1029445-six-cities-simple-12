@@ -17,15 +17,16 @@ type AppProps = {
   placesCount: number;
   city: City;
   offersOpcion: OffersNearby;
+  arrayOfCities: string[];
 }
 
-function App({offers,reviews, placesCount,city, offersOpcion}: AppProps): JSX.Element {
+function App({offers,reviews, placesCount,city, offersOpcion, arrayOfCities}: AppProps): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
           <Route path='/'>
-            <Route index element={<Main city={city} offers={offers} placesCount={placesCount}/>}/>
+            <Route index element={<Main arrayOfCities={arrayOfCities} city={city} offers={offers} placesCount={placesCount}/>}/>
             <Route path={AppRoute.Login}
               element={
                 <PrivateRoute
