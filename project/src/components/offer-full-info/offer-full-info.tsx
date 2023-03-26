@@ -103,7 +103,7 @@ export default function OfferFullInfo({offers, reviews, city, activeCard, offers
         </div>
       </div>
       <section className="property__map map" style={{backgroundImage:'none', height:'auto'}}>
-        <Map city={city} offers={offersOpcion} selectedPoint={activeCard}/>
+        <Map selectedPoint={activeCard}/>
       </section>
     </section>
   );

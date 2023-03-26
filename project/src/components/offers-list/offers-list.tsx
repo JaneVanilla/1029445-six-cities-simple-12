@@ -3,7 +3,6 @@ import {Offers} from '../../types/offers';
 import {OffersNearby} from '../../types/offersNearby';
 import Card from '../card/card';
 
-
 type OffersListType = {
   offersOpcion: Offers | OffersNearby;
   onListItemHover: (listItemName: number) => void;

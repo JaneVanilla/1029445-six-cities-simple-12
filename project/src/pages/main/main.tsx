@@ -4,24 +4,29 @@ import OffersList from '../../components/offers-list/offers-list';
 import {City} from '../../types/city';
 import Map from '../../components/map/map';
 import Navigation from '../../components/navigation/navigation';
-import Tabs from '../../components/tabs/tabs';
+import CityList from '../../components/city-list/city-list';
 import {useState} from 'react';
 import Header from '../../components/header/header';
+import {useAppSelector} from '../../hooks/index';
+import 'leaflet/dist/leaflet.css';
 
 type MainSreenProps = {
   offers: Offers;
   placesCount: number;
   city: City;
+  arrayOfCities: string[];
 }
-
-export default function Main({offers, placesCount, city}: MainSreenProps) {
+export default function Main({offers, placesCount, city, arrayOfCities}: MainSreenProps) {
   const [activeCard, setActiveCard] = useState<number | null>(null);
+  //const dispatch = useAppDispatch();
+  const cityFromReducer = useAppSelector((state) => state.city);
+  const currentOffers = useAppSelector((state) => state.currentOffers);
   return (
     <div className="page page--gray page--main">
-
       <Helmet>
         <title>Six cities. Choose place to stay.</title>
       </Helmet>
+      {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
       <div style={{display: 'none'}}>
         <svg xmlns="http://www.w3.org/2000/svg">
           <symbol id="icon-arrow-select" viewBox="0 0 7 4">
@@ -44,12 +49,12 @@ export default function Main({offers, placesCount, city}: MainSreenProps) {
       <Header navigation={<Navigation/>}/>
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
-        <Tabs/>
+        <CityList arrayOfCities={arrayOfCities}/>
         <div className="cities">
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{placesCount} places to stay in {city.title}</b>
+              <b className="places__found">{currentOffers.length} places to stay in {cityFromReducer}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
@@ -65,10 +70,10 @@ export default function Main({offers, placesCount, city}: MainSreenProps) {
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-              <OffersList classesName={{list:'tabs__content cities__places-list',item:'cities__card',image:'cities__image-wrapper'}} offersOpcion={offers} onListItemHover={(id) => setActiveCard(id)} selectedPoint={activeCard}/>
+              <OffersList classesName={{list:'tabs__content cities__places-list',item:'cities__card',image:'cities__image-wrapper'}} offersOpcion={currentOffers} onListItemHover={(id) => setActiveCard(id)} selectedPoint={activeCard}/>
             </section>
             <div className="cities__right-section">
-              <Map city={city} offers={offers} selectedPoint={activeCard}/>
+              <Map selectedPoint={activeCard}/>
             </div>
           </div>
         </div>

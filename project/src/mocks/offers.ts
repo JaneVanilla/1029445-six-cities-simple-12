@@ -129,5 +129,37 @@ export const offers: Offers = [
     title: 'Nice, cozy, warm big bed apartment',
     type: 'Apartment',
   },
+  {
+    bedrooms: 1,
+    city: {
+      location: {
+        latitude: 48.8566,
+        longitude: 2.3522,
+        zoom: 10,
+      },
+      name: 'Paris',
+    },
+    description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.',
+    goods: ['WI-FI','Heating','Kitchen','Fridge', 'Waching machine', 'Towels'],
+    host: {
+      avatarUrl: '../img/avatar-angelina.jpg',
+      id: 1,
+      isPro: true,
+      name: 'Angelina',
+    },
+    id: 5,
+    images: ['../img/room.jpg','../img/apartment-01.jpg','../img/apartment-02.jpg','../img/apartment-03.jpg','../img/studio-01.jpg','../img/apartment-011.jpg'],
+    isPremium: true,
+    location: {
+      latitude: 48.856373,
+      longitude: 2.353016,
+      zoom: 10},
+    maxAdults: 6,
+    previewImage: 'https://images.unsplash.com/photo-1499856871958-5b9627545d1a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1420&q=80',
+    price: 180,
+    rating: 4.8,
+    title: 'Nice, cozy, warm big bed apartment',
+    type: 'Hotel Paris',
+  },
 ];
 
