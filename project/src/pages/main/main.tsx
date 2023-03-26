@@ -8,6 +8,7 @@ import CityList from '../../components/city-list/city-list';
 import {useState} from 'react';
 import Header from '../../components/header/header';
 import {useAppSelector} from '../../hooks/index';
+import 'leaflet/dist/leaflet.css';
 
 type MainSreenProps = {
   offers: Offers;
@@ -15,7 +16,6 @@ type MainSreenProps = {
   city: City;
   arrayOfCities: string[];
 }
-
 export default function Main({offers, placesCount, city, arrayOfCities}: MainSreenProps) {
   const [activeCard, setActiveCard] = useState<number | null>(null);
   //const dispatch = useAppDispatch();
@@ -23,7 +23,6 @@ export default function Main({offers, placesCount, city, arrayOfCities}: MainSre
   const currentOffers = useAppSelector((state) => state.currentOffers);
   return (
     <div className="page page--gray page--main">
-
       <Helmet>
         <title>Six cities. Choose place to stay.</title>
       </Helmet>
@@ -74,7 +73,7 @@ export default function Main({offers, placesCount, city, arrayOfCities}: MainSre
               <OffersList classesName={{list:'tabs__content cities__places-list',item:'cities__card',image:'cities__image-wrapper'}} offersOpcion={currentOffers} onListItemHover={(id) => setActiveCard(id)} selectedPoint={activeCard}/>
             </section>
             <div className="cities__right-section">
-              <Map city={city} offers={offers} selectedPoint={activeCard}/>
+              <Map selectedPoint={activeCard}/>
             </div>
           </div>
         </div>

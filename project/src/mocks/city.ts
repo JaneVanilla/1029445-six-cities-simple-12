@@ -8,3 +8,4 @@ export const CITY: City = {
 };
 
 export const CityOffers = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
+

@@ -1,6 +1,7 @@
 import {useEffect, useState, MutableRefObject, useRef} from 'react';
 import {Map, TileLayer} from 'leaflet';
 import {City} from '../types/city';
+import {useAppSelector} from './index';
 
 function useMap(
   mapRef: MutableRefObject<HTMLElement | null>,
@@ -8,13 +9,14 @@ function useMap(
 ): Map | null {
   const [map, setMap] = useState<Map | null>(null);
   const isRenderedRef = useRef<boolean>(false);
-
+  const currentCityReducer = useAppSelector((state) => state.cityTest);
+  //const dispatch = useAppDispatch();
   useEffect(() => {
     if (mapRef.current !== null && !isRenderedRef.current) {
       const instance = new Map(mapRef.current, {
         center: {
-          lat: city.lat,
-          lng: city.lng
+          lat: currentCityReducer.lat,
+          lng: currentCityReducer.lng,
         },
         zoom: 10
       });
@@ -26,9 +28,7 @@ function useMap(
             '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
         }
       );
-
       instance.addLayer(layer);
-
       setMap(instance);
       isRenderedRef.current = true;
     }

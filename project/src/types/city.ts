@@ -5,3 +5,4 @@ export type City = {
   zoom: number;
 }
 
+export type CityTest = City[];
