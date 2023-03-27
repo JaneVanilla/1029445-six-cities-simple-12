@@ -1,5 +1,14 @@
 import {createReducer, PayloadAction} from '@reduxjs/toolkit';
-import {changeCity, changeCityTest, completeList, completeOffers} from './action';
+import {
+  changeCity,
+  changeCityTest,
+  completeList,
+  completeOffers,
+  sortHide,
+  sortPriceLowToHigh,
+  sortShowOrHide,
+  sortPriceHighToLow, sortTopRatingFirst,
+} from './action';
 import {offers} from '../mocks/offers';
 import {CityOffers} from '../mocks/city';
 
@@ -17,6 +26,7 @@ const initialState = {
   currentOffers: firstCityOffers,
   activeCard: false,
   instance: {},
+  isActive: false,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -43,6 +53,24 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(completeOffers, (state) => {
       const result = offers.filter((offer) => offer.city.name === state.city);
       state.currentOffers = result;
+    })
+    .addCase(sortPriceLowToHigh, (state) => {
+      const sortedArray = state.currentOffers.sort((a,b) => a.price - b.price);
+      state.currentOffers = sortedArray;
+    })
+    .addCase(sortPriceHighToLow, (state) => {
+      const sortedArray = state.currentOffers.sort((a,b) => b.price - a.price);
+      state.currentOffers = sortedArray;
+    })
+    .addCase(sortTopRatingFirst, (state) => {
+      const sortedArray = state.currentOffers.sort((a,b) => b.rating - a.rating);
+      state.currentOffers = sortedArray;
+    })
+    .addCase(sortShowOrHide, (state) => {
+      state.isActive = !state.isActive;
+    })
+    .addCase(sortHide, (state) => {
+      state.isActive = false;
     });
 });
 
