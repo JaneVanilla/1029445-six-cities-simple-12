@@ -1,6 +1,6 @@
 //import {useState} from 'react';
 import {useAppDispatch, useAppSelector} from '../../hooks';
-import {sortHide, sortPriceHighToLow, sortPriceLowToHigh, sortShowOrHide, sortTopRatingFirst} from '../../store/action';
+import {sortHide, sortPriceFilter, sortShowOrHide} from '../../store/action';
 export default function SortOptions() {
   //const [isActive, setIsActive] = useState(false);
   //function onListHAndler() {
@@ -21,9 +21,9 @@ export default function SortOptions() {
       </span>
       <ul className={isActiveReducer ? 'places__options places__options--custom places__options--opened' : 'places__options places__options--custom'}>
         <li className="places__option places__option--active" tabIndex={0}>Popular</li>
-        <li className="places__option" tabIndex={0} onClick={() => {dispatch(sortPriceLowToHigh());dispatch(sortHide());}}>Price: low to high</li>
-        <li className="places__option" tabIndex={0} onClick={() => {dispatch(sortPriceHighToLow());dispatch(sortHide());}}>Price: high to low</li>
-        <li className="places__option" tabIndex={0} onClick={() => {dispatch(sortTopRatingFirst());dispatch(sortHide());}}>Top rated first</li>
+        <li className="places__option" tabIndex={0} onClick={() => {dispatch(sortPriceFilter('lowToHight'));dispatch(sortHide());}}>Price: low to high</li>
+        <li className="places__option" tabIndex={0} onClick={() => {dispatch(sortPriceFilter('hightToLow'));dispatch(sortHide());}}>Price: high to low</li>
+        <li className="places__option" tabIndex={0} onClick={() => {dispatch(sortPriceFilter('topRating'));dispatch(sortHide());}}>Top rated first</li>
       </ul>
     </form>
   );

@@ -7,6 +7,9 @@ import {offersNearby} from './mocks/offers-nearby';
 import {reviews} from './mocks/reviews';
 import {CITY, CityOffers} from './mocks/city';
 import {store} from './store';
+import {fetchOffersAction} from './store/api-actions';
+
+store.dispatch(fetchOffersAction());
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,

@@ -9,7 +9,7 @@ type CityListType = {
 
 export default function CityList({arrayOfCities}: CityListType) {
   const dispatch = useAppDispatch();
-  const cityFromReducer = useAppSelector((state) => state.city);
+  const cityFromReducer = useAppSelector((state) => state.cityTest.title);
 
   return (
     <div className="tabs">

@@ -10,6 +10,7 @@ import Header from '../../components/header/header';
 import {useAppSelector} from '../../hooks/index';
 import 'leaflet/dist/leaflet.css';
 import SortOptions from '../../components/sort-options/sort-options';
+//import {loadOffers} from '../../store/action';
 
 type MainSreenProps = {
   offers: Offers;
@@ -17,10 +18,12 @@ type MainSreenProps = {
   city: City;
   arrayOfCities: string[];
 }
+
 export default function Main({offers, placesCount, city, arrayOfCities}: MainSreenProps) {
   const [activeCard, setActiveCard] = useState<number | null>(null);
   //const dispatch = useAppDispatch();
-  const cityFromReducer = useAppSelector((state) => state.city);
+  //dispatch(loadOffers);
+  const cityFromReducer = useAppSelector((state) => state.cityTest.title);
   const currentOffers = useAppSelector((state) => state.currentOffers);
   return (
     <div className="page page--gray page--main">
