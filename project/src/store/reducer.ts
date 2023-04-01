@@ -5,37 +5,65 @@ import {
   completeList,
   completeOffers,
   sortHide,
-  sortPriceLowToHigh,
   sortShowOrHide,
-  sortPriceHighToLow, sortTopRatingFirst,
+  sortPriceFilter,
+  loadOffers, requireAuthorization, setOffersDataLoadingStatus,
 } from './action';
-import {offers} from '../mocks/offers';
 import {CityOffers} from '../mocks/city';
+import {AuthorizationStatus} from '../const';
+import {Offer} from '../types/offers';
 
-const firstCityOffers = offers.filter((offer) => offer.city.name === CityOffers[0]);
-
-const initialState = {
-  city: CityOffers[0],
+type initialStateType = {
   cityTest: {
-    title: CityOffers[0],
+    title: string;
+    lat: number;
+    lng: number;
+    zoom: number;
+  };
+  citiesList: string[];
+  currentOffers: Offer[];
+  activeCard: boolean;
+  instance: object;
+  isActive: boolean;
+  offers: Offer[];
+  authorizationStatus: string;
+  isQuestionsDataLoading: boolean;
+}
+const initialState: initialStateType = {
+  cityTest: {
+    title: 'Paris',
     lat: 48.8566,
     lng: 2.3522,
     zoom: 10,
   },
   citiesList: CityOffers,
-  currentOffers: firstCityOffers,
+  currentOffers: [],
   activeCard: false,
   instance: {},
   isActive: false,
+  offers: [],
+  authorizationStatus: AuthorizationStatus.Unknown,
+  isQuestionsDataLoading: false,
+
 };
 
 const reducer = createReducer(initialState, (builder) => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   builder
+    .addCase(setOffersDataLoadingStatus, (state, action) => {
+      state.isQuestionsDataLoading = action.payload;
+    })
+    .addCase(loadOffers,(state,action)=>{
+      state.offers = action.payload;
+      // eslint-disable-next-line no-console
+      console.log('offers',state.offers);
+    })
+    .addCase(requireAuthorization,(state,action)=>{
+      state.authorizationStatus = action.payload;
+    })
     .addCase(changeCityTest, (state,city: PayloadAction<string>) => {
-      state.cityTest.title = city.payload;
-      const findOffer = offers.find((offer) => state.cityTest.title === offer.city.name);
+      const findOffer = state.offers.find((offer) => state.cityTest.title === offer.city.name);
       // eslint-disable-next-line no-console
       if(findOffer) {
         const findLong = findOffer.city.location.longitude;
@@ -45,26 +73,26 @@ const reducer = createReducer(initialState, (builder) => {
       }
     })
     .addCase(changeCity, (state,city: PayloadAction<string>) => {
-      state.city = city.payload;
+      state.cityTest.title = city.payload;
     })
     .addCase(completeList, (state) => {
       state.citiesList = CityOffers;
     })
     .addCase(completeOffers, (state) => {
-      const result = offers.filter((offer) => offer.city.name === state.city);
+      const result = state.offers.filter((offer) => offer.city.name === state.cityTest.title);
       state.currentOffers = result;
     })
-    .addCase(sortPriceLowToHigh, (state) => {
-      const sortedArray = state.currentOffers.sort((a,b) => a.price - b.price);
-      state.currentOffers = sortedArray;
-    })
-    .addCase(sortPriceHighToLow, (state) => {
-      const sortedArray = state.currentOffers.sort((a,b) => b.price - a.price);
-      state.currentOffers = sortedArray;
-    })
-    .addCase(sortTopRatingFirst, (state) => {
-      const sortedArray = state.currentOffers.sort((a,b) => b.rating - a.rating);
-      state.currentOffers = sortedArray;
+    .addCase(sortPriceFilter, (state,option: PayloadAction<string>) => {
+      if(option.payload === 'lowToHight') {
+        const sortedArray = state.currentOffers.sort((a,b) => a.price - b.price);
+        state.currentOffers = sortedArray;
+      } else if (option.payload === 'hightToLow') {
+        const sortedArray = state.currentOffers.sort((a,b) => b.price - a.price);
+        state.currentOffers = sortedArray;
+      } else if(option.payload === 'topRating') {
+        const sortedArray = state.currentOffers.sort((a,b) => b.rating - a.rating);
+        state.currentOffers = sortedArray;
+      }
     })
     .addCase(sortShowOrHide, (state) => {
       state.isActive = !state.isActive;

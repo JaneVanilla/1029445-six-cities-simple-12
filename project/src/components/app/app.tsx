@@ -10,6 +10,8 @@ import {Offers} from '../../types/offers';
 import {Reviews} from '../../types/reviews';
 import {City} from '../../types/city';
 import {OffersNearby} from '../../types/offersNearby';
+import LoadingScreen from '../../pages/loading-screen/loading-screen';
+import {useAppSelector} from '../../hooks';
 
 type AppProps = {
   offers: Offers;
@@ -21,6 +23,12 @@ type AppProps = {
 }
 
 function App({offers,reviews, placesCount,city, offersOpcion, arrayOfCities}: AppProps): JSX.Element {
+  const isOffersDataLoading = useAppSelector((state) => state.isQuestionsDataLoading);
+  if (isOffersDataLoading) {
+    return (
+      <LoadingScreen />
+    );
+  }
   return (
     <HelmetProvider>
       <BrowserRouter>
