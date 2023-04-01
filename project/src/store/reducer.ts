@@ -13,7 +13,6 @@ import {CityOffers} from '../mocks/city';
 import {AuthorizationStatus} from '../const';
 import {Offer} from '../types/offers';
 
-
 type initialStateType = {
   cityTest: {
     title: string;
@@ -32,7 +31,7 @@ type initialStateType = {
 }
 const initialState: initialStateType = {
   cityTest: {
-    title: CityOffers[0],
+    title: 'Paris',
     lat: 48.8566,
     lng: 2.3522,
     zoom: 10,
