@@ -6,6 +6,9 @@ import {Reviews} from '../../types/reviews';
 import {City} from '../../types/city';
 import Map from '../../components/map/map';
 import {OffersNearby} from '../../types/offersNearby';
+import {useAppDispatch} from '../../hooks';
+import {setCurrentOfferID} from '../../store/action';
+import {fetchOfferCurrentAction} from '../../store/api-actions';
 
 type OfferFullInfoProps = {
   offers: Offers;
@@ -19,9 +22,14 @@ type OfferItemParams = {
 }
 export default function OfferFullInfo({offers, reviews, city, activeCard, offersOpcion}: OfferFullInfoProps) {
   const params = useParams<keyof OfferItemParams>() as OfferItemParams;
+  const dispatch = useAppDispatch();
   const {id} = params;
-
+  dispatch(setCurrentOfferID(+id));
+  dispatch(fetchOfferCurrentAction(id));
+  //const currentOffer1 = useAppSelector((state) => state.currentRoom);
   const currentOffer = offers.find((offer) => offer.id === +id);
+  // eslint-disable-next-line no-console
+  //console.log('currentOffer1',currentOffer1);
   const goodsList = currentOffer?.goods.map((good) => <li key={`${currentOffer.id}-${good}`} className='property__inside-item'>{good}</li>);
   const galleryItems = currentOffer?.images.map((img) => (
     <div key={`${currentOffer.id}-${img}`} className='property__image-wrapper'><img className='property__image' src={img} alt='Photo studio'/></div>)

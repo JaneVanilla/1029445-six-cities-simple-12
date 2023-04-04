@@ -7,11 +7,18 @@ import {
   sortHide,
   sortShowOrHide,
   sortPriceFilter,
-  loadOffers, requireAuthorization, setOffersDataLoadingStatus,
+  loadOffers,
+  requireAuthorization,
+  setOffersDataLoadingStatus,
+  setCurrentOfferID,
+  loadCurrentOffer,
+  setUserData,
+  setError,
 } from './action';
 import {CityOffers} from '../mocks/city';
 import {AuthorizationStatus} from '../const';
 import {Offer} from '../types/offers';
+import {UserData} from '../types/user-data';
 
 type initialStateType = {
   cityTest: {
@@ -26,8 +33,12 @@ type initialStateType = {
   instance: object;
   isActive: boolean;
   offers: Offer[];
-  authorizationStatus: string;
-  isQuestionsDataLoading: boolean;
+  authorizationStatus: AuthorizationStatus;
+  isOffersDataLoading: boolean;
+  currentOfferId: number | null;
+  currentRoom: object;
+  error: string | null;
+  userData: UserData | null;
 }
 const initialState: initialStateType = {
   cityTest: {
@@ -43,28 +54,41 @@ const initialState: initialStateType = {
   isActive: false,
   offers: [],
   authorizationStatus: AuthorizationStatus.Unknown,
-  isQuestionsDataLoading: false,
-
+  isOffersDataLoading: false,
+  currentOfferId: null,
+  currentRoom: {},
+  //userData: {},
+  error: null,
+  userData: null,
 };
+// eslint-disable-next-line no-console,@typescript-eslint/no-unsafe-member-access
 
 const reducer = createReducer(initialState, (builder) => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   builder
+    .addCase(loadCurrentOffer, (state, action) => {
+      state.currentRoom = action.payload;
+    })
+    .addCase(setCurrentOfferID, (state, action) => {
+      state.currentOfferId = action.payload;
+    })
     .addCase(setOffersDataLoadingStatus, (state, action) => {
-      state.isQuestionsDataLoading = action.payload;
+      state.isOffersDataLoading = action.payload;
     })
     .addCase(loadOffers,(state,action)=>{
       state.offers = action.payload;
-      // eslint-disable-next-line no-console
-      console.log('offers',state.offers);
     })
     .addCase(requireAuthorization,(state,action)=>{
       state.authorizationStatus = action.payload;
+      // eslint-disable-next-line no-console
+      console.log(state.authorizationStatus);
+    })
+    .addCase(setUserData, (state, action) => {
+      state.userData = action.payload;
     })
     .addCase(changeCityTest, (state,city: PayloadAction<string>) => {
       const findOffer = state.offers.find((offer) => state.cityTest.title === offer.city.name);
-      // eslint-disable-next-line no-console
       if(findOffer) {
         const findLong = findOffer.city.location.longitude;
         const findLat = findOffer.city.location.latitude;
@@ -76,7 +100,7 @@ const reducer = createReducer(initialState, (builder) => {
       state.cityTest.title = city.payload;
     })
     .addCase(completeList, (state) => {
-      state.citiesList = CityOffers;
+      //state.citiesList = cityList;
     })
     .addCase(completeOffers, (state) => {
       const result = state.offers.filter((offer) => offer.city.name === state.cityTest.title);
@@ -99,6 +123,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(sortHide, (state) => {
       state.isActive = false;
+    })
+    .addCase(setError, (state, action) => {
+      state.error = action.payload;
     });
 });
 

@@ -7,10 +7,11 @@ import {offersNearby} from './mocks/offers-nearby';
 import {reviews} from './mocks/reviews';
 import {CITY, CityOffers} from './mocks/city';
 import {store} from './store';
-import {fetchOffersAction} from './store/api-actions';
+import {checkAuthAction, fetchOffersAction} from './store/api-actions';
+import ErrorMessage from './components/error-message/error-message';
 
 store.dispatch(fetchOffersAction());
-
+store.dispatch(checkAuthAction());
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -23,6 +24,7 @@ const Setting = {
 root.render(
   <React.StrictMode>
     <Provider store = {store}>
+      <ErrorMessage />
       <App arrayOfCities={CityOffers} city={CITY} offers={offers} offersOpcion={offersNearby} reviews={reviews} placesCount={Setting.placesCount}/>
     </Provider>
   </React.StrictMode>,

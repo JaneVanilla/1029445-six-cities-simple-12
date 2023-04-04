@@ -18,7 +18,6 @@ type RoomProps = {
 
 export default function Room({offers, reviews, city, offersOpcion}: RoomProps) {
   const [activeCard, setActiveCard] = useState<number | null>(null);
-
   return (
     <div className="page">
       <Helmet>
@@ -47,11 +46,11 @@ export default function Room({offers, reviews, city, offersOpcion}: RoomProps) {
       <Header navigation={<Navigation/>}/>
 
       <main className="page__main page__main--property">
-        <OfferFullInfo offersOpcion={offersOpcion} offers={offers} reviews={reviews} city={city} activeCard={activeCard}/>
+        <OfferFullInfo offersOpcion={offersOpcion} offers={offers} reviews={reviews} city={city} activeCard={activeCard} />
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
-            <OffersList offersOpcion={offersOpcion} onListItemHover={(id) => setActiveCard(id)} selectedPoint={activeCard} classesName={{list:'near-places__list',item:'near-places__card',image:'near-places__image-wrapper'}}></OffersList>
+            <OffersList offersOpcion={offersOpcion} onListItemHover={(id) => {setActiveCard(id); }} selectedPoint={activeCard} classesName={{list:'near-places__list',item:'near-places__card',image:'near-places__image-wrapper'}}></OffersList>
           </section>
         </div>
       </main>

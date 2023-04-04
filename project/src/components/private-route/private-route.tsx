@@ -12,6 +12,6 @@ export default function PrivateRoute(props: PrivateRouteProps): JSX.Element {
   return (
     authorizationStatus === AuthorizationStatus.NoAuth
       ? children
-      : <Navigate to={AppRoute.Main}/>
+      : <Navigate to={AppRoute.Main} />
   );
 }
