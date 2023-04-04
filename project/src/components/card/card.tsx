@@ -1,5 +1,6 @@
 import {Offer} from '../../types/offers';
 import {Link} from 'react-router-dom';
+
 type CardProps = {
   offer: Offer;
   onMouseOverHandler:() => void;
@@ -10,7 +11,8 @@ type CardProps = {
 }
 
 export default function Card({offer,onMouseOverHandler, classesName}: CardProps) {
-
+  // eslint-disable-next-line no-console
+  console.log(offer.rating);
   return (
     <article id={offer.id.toString()} className={`place-card ${classesName.item}`} onMouseOver={onMouseOverHandler}>
       {offer.isPremium &&
@@ -34,7 +36,7 @@ export default function Card({offer,onMouseOverHandler, classesName}: CardProps)
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width:'80%'}}/>
+            <span style={{width: `${`${Math.round(offer.rating ) * 20}%`}`}}/>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

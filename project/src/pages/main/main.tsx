@@ -1,7 +1,5 @@
 import {Helmet} from 'react-helmet-async';
-import {Offers} from '../../types/offers';
 import OffersList from '../../components/offers-list/offers-list';
-import {City} from '../../types/city';
 import Map from '../../components/map/map';
 import Navigation from '../../components/navigation/navigation';
 import CityList from '../../components/city-list/city-list';
@@ -10,21 +8,19 @@ import Header from '../../components/header/header';
 import {useAppSelector} from '../../hooks/index';
 import 'leaflet/dist/leaflet.css';
 import SortOptions from '../../components/sort-options/sort-options';
-//import {loadOffers} from '../../store/action';
+import MainEmpty from '../main-empty/main-empty';
 
-type MainSreenProps = {
-  offers: Offers;
-  placesCount: number;
-  city: City;
-  arrayOfCities: string[];
-}
 
-export default function Main({offers, placesCount, city, arrayOfCities}: MainSreenProps) {
+export default function Main() {
   const [activeCard, setActiveCard] = useState<number | null>(null);
-  //const dispatch = useAppDispatch();
-  //dispatch(loadOffers);
+  const allOffers = useAppSelector((state) => state.offers);
   const cityFromReducer = useAppSelector((state) => state.cityTest.title);
   const currentOffers = useAppSelector((state) => state.currentOffers);
+
+
+  if(allOffers.length === 0) {
+    return <MainEmpty/>;
+  }
   return (
     <div className="page page--gray page--main">
       <Helmet>
@@ -53,7 +49,7 @@ export default function Main({offers, placesCount, city, arrayOfCities}: MainSre
       <Header navigation={<Navigation/>}/>
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
-        <CityList arrayOfCities={arrayOfCities}/>
+        <CityList/>
         <div className="cities">
           <div className="cities__places-container container">
             <section className="cities__places places">
