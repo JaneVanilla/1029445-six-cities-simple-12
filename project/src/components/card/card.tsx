@@ -11,8 +11,6 @@ type CardProps = {
 }
 
 export default function Card({offer,onMouseOverHandler, classesName}: CardProps) {
-  // eslint-disable-next-line no-console
-  console.log(offer.rating);
   return (
     <article id={offer.id.toString()} className={`place-card ${classesName.item}`} onMouseOver={onMouseOverHandler}>
       {offer.isPremium &&

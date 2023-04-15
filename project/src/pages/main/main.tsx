@@ -9,6 +9,7 @@ import {useAppSelector} from '../../hooks/index';
 import 'leaflet/dist/leaflet.css';
 import SortOptions from '../../components/sort-options/sort-options';
 import MainEmpty from '../main-empty/main-empty';
+import {Offer} from '../../types/offers';
 
 
 export default function Main() {
@@ -16,7 +17,7 @@ export default function Main() {
   const allOffers = useAppSelector((state) => state.offers);
   const cityFromReducer = useAppSelector((state) => state.cityTest.title);
   const currentOffers = useAppSelector((state) => state.currentOffers);
-
+  const getCityForMap = (offer: Offer) => offer.city;
 
   if(allOffers.length === 0) {
     return <MainEmpty/>;
@@ -59,7 +60,7 @@ export default function Main() {
               <OffersList classesName={{list:'tabs__content cities__places-list',item:'cities__card',image:'cities__image-wrapper'}} offersOpcion={currentOffers} onListItemHover={(id) => setActiveCard(id)} selectedPoint={activeCard}/>
             </section>
             <div className="cities__right-section">
-              <Map selectedPoint={activeCard}/>
+              <Map city={getCityForMap(currentOffers[0])} offers={currentOffers} activeCardId={activeCard} classNameMap={'cities__map map'}/>
             </div>
           </div>
         </div>

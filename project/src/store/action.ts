@@ -2,6 +2,7 @@ import {createAction} from '@reduxjs/toolkit';
 import {Offers,Offer} from '../types/offers';
 import {AuthorizationStatus} from '../const';
 import {UserData} from '../types/user-data';
+import Review from '../types/review';
 
 export const changeCity = createAction<string>('site/сhangeCity');
 export const completeList = createAction('site/completeList');
@@ -26,3 +27,12 @@ export const setError = createAction<string | null>('data/setError');
 export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
 
 //export const setEmailField = createAction<string>('data/setEmailField');
+
+
+export const loadOfferById = createAction<Offer>('data/loadOfferById');
+
+export const loadNearOffers = createAction<Offer[]>('data/loadNearOffers');
+
+export const loadReviews = createAction<Review[]>('reviews/loadReviews');
+
+export const setNextReview = createAction<Review>('reviews/setNextReview');

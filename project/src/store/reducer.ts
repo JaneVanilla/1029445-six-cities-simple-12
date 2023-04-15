@@ -14,11 +14,16 @@ import {
   loadCurrentOffer,
   setUserData,
   setError,
+  loadNearOffers,
+  loadOfferById,
+  loadReviews,
+  setNextReview,
 } from './action';
 import {CityOffers} from '../mocks/city';
 import {AuthorizationStatus} from '../const';
 import {Offer} from '../types/offers';
 import {UserData} from '../types/user-data';
+import Review from '../types/review';
 
 type initialStateType = {
   cityTest: {
@@ -39,6 +44,10 @@ type initialStateType = {
   currentRoom: object;
   error: string | null;
   userData: UserData | null;
+  offer: Offer | null;
+  neighbours: Offer[];
+  nextReview: Review | null;
+  reviews: Review[];
 }
 const initialState: initialStateType = {
   cityTest: {
@@ -60,6 +69,10 @@ const initialState: initialStateType = {
   //userData: {},
   error: null,
   userData: null,
+  offer: null,
+  neighbours: [],
+  nextReview: null,
+  reviews: [],
 };
 // eslint-disable-next-line no-console,@typescript-eslint/no-unsafe-member-access
 
@@ -67,6 +80,18 @@ const reducer = createReducer(initialState, (builder) => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   builder
+    .addCase(loadOfferById, (state, action) => {
+      state.offer = action.payload;
+    })
+    .addCase(loadNearOffers, (state, action) => {
+      state.neighbours = action.payload;
+    })
+    .addCase(loadReviews, (state, action) => {
+      state.reviews = action.payload;
+    })
+    .addCase(setNextReview, (state, action) => {
+      state.nextReview = action.payload;
+    })
     .addCase(loadCurrentOffer, (state, action) => {
       state.currentRoom = action.payload;
     })

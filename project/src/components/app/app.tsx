@@ -46,7 +46,7 @@ function App({offers,reviews, placesCount,city, offersOpcion, arrayOfCities}: Ap
               }
             >
             </Route>
-            <Route path={AppRoute.Room} element={<Room offers={offers} offersOpcion={offersOpcion} reviews={reviews} city={city}/>}></Route>
+            <Route path={AppRoute.Room} element={<Room offersOpcion={offersOpcion} reviews={reviews}/>}></Route>
             <Route path='*' element={<NotFoundScreen/>}></Route>
           </Route>
         </Routes>
