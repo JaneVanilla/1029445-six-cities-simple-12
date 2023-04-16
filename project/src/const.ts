@@ -33,3 +33,10 @@ export const URL_MARKER_CURRENT = '../img/pin-active.svg';
 
 export const TIMEOUT_SHOW_ERROR = 2000;
 
+export enum SortTypes {
+  DEFAULT = 'Popular',
+  PRICE_UP = 'Price: low to high',
+  PRICE_DOWN = 'Price: high to low',
+  RATING = 'Top rated first'
+}
+

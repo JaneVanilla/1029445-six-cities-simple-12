@@ -13,6 +13,9 @@ import ErrorMessage from './components/error-message/error-message';
 store.dispatch(fetchOffersAction());
 store.dispatch(checkAuthAction());
 
+// eslint-disable-next-line no-console
+console.log(store.dispatch(fetchOffersAction()));
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );

@@ -9,6 +9,7 @@ export const completeList = createAction('site/completeList');
 export const completeOffers = createAction('site/completeOffers');
 export const changeCityTest = createAction<string>('site/сhangeCityTest');
 export const sortPriceFilter = createAction<string>('site/sortPriceLowToHigh');
+export const sortPriceFilterName = createAction<string>('site/filterName');
 export const sortShowOrHide = createAction('site/showHideSortBlock');
 export const sortHide = createAction('site/hideSortBlock');
 
@@ -36,3 +37,5 @@ export const loadNearOffers = createAction<Offer[]>('data/loadNearOffers');
 export const loadReviews = createAction<Review[]>('reviews/loadReviews');
 
 export const setNextReview = createAction<Review>('reviews/setNextReview');
+
+export const setcurrentOffersDefault = createAction('reviews/setOffersDefault');

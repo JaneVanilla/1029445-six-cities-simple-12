@@ -2,7 +2,7 @@ import {Offers} from '../../types/offers';
 import ReviewsForm from '../reviews-form/reviews-form';
 import {useParams} from 'react-router-dom';
 import ReviewsList from '../reviews-list/reviews-list';
-//import {Reviews} from '../../types/reviews';
+//import {Review} from '../../types/review';
 import Map from '../../components/map/map';
 //import {OffersNearby} from '../../types/offersNearby';
 import {useAppDispatch, useAppSelector} from '../../hooks';
@@ -15,7 +15,9 @@ import {AuthorizationStatus} from '../../const';
 
 import { fetchNearOffersAction, fetchOfferByIdAction, fetchReviewsAction } from '../../store/api-actions';
 import OffersList from '../offers-list/offers-list';
-import LoadingScreen from '../../pages/loading-screen/loading-screen';
+//import LoadingScreen from '../../pages/loading-screen/loading-screen';
+//import Review from "../../types/review";
+//import LoadingScreen from '../../pages/loading-screen/loading-screen';
 
 type OfferItemParams = {
   id: string;
@@ -25,10 +27,11 @@ export default function OfferFullInfo() {
   const dispatch = useAppDispatch();
   const {id} = params;
   const hotelId = parseInt(id, 10);
-
   const currentOffer = useAppSelector((state) => state.offer);
   const [activeCard, setActiveCard] = useState<number | null>(null);
   const authStatus = useAppSelector((state) => state.authorizationStatus);
+  //const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
+  //const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   useEffect(() => {
     dispatch(fetchOfferByIdAction({ id : hotelId }));
     dispatch(fetchNearOffersAction({ id : hotelId }));
@@ -46,17 +49,6 @@ export default function OfferFullInfo() {
     <div key={`${currentOffer.id}-${img}`} className='property__image-wrapper'><img className='property__image' src={img} alt='Photo studio'/></div>)
   );
 
-  if (currentOffer?.id === undefined) {
-    return (
-      <NotFoundScreen/>
-    );
-  }
-
-  if (!currentOffer) {
-    return (
-      <LoadingScreen />
-    );
-  }
   let ratingMathRound = 0;
   let result = 0;
   let imgSrc = '';
@@ -64,6 +56,11 @@ export default function OfferFullInfo() {
     ratingMathRound = Math.round(currentOffer.rating);
     result = ratingMathRound * 20;
     imgSrc = currentOffer.host.avatarUrl;
+  }
+  if (currentOffer?.id === undefined) {
+    return (
+      <NotFoundScreen/>
+    );
   }
 
   return (

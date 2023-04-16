@@ -25,11 +25,13 @@ type AppProps = {
 function App({offers,reviews, placesCount,city, offersOpcion, arrayOfCities}: AppProps): JSX.Element {
   const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+
   if (isOffersDataLoading || authorizationStatus === AuthorizationStatus.Unknown) {
     return (
       <LoadingScreen />
     );
   }
+
   return (
     <HelmetProvider>
       <BrowserRouter>
