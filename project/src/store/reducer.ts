@@ -14,11 +14,17 @@ import {
   loadCurrentOffer,
   setUserData,
   setError,
+  loadNearOffers,
+  loadOfferById,
+  loadReviews,
+  setNextReview, sortPriceFilterName, setcurrentOffersDefault,
 } from './action';
 import {CityOffers} from '../mocks/city';
 import {AuthorizationStatus} from '../const';
 import {Offer} from '../types/offers';
 import {UserData} from '../types/user-data';
+import Review from '../types/review';
+import {SortTypes} from '../const';
 
 type initialStateType = {
   cityTest: {
@@ -29,6 +35,7 @@ type initialStateType = {
   };
   citiesList: string[];
   currentOffers: Offer[];
+  currentOffersDefault: Offer[];
   activeCard: boolean;
   instance: object;
   isActive: boolean;
@@ -39,6 +46,11 @@ type initialStateType = {
   currentRoom: object;
   error: string | null;
   userData: UserData | null;
+  offer: Offer | undefined;
+  neighbours: Offer[];
+  nextReview: Review | null;
+  reviews: Review[];
+  filterName: string;
 }
 const initialState: initialStateType = {
   cityTest: {
@@ -49,6 +61,7 @@ const initialState: initialStateType = {
   },
   citiesList: CityOffers,
   currentOffers: [],
+  currentOffersDefault: [],
   activeCard: false,
   instance: {},
   isActive: false,
@@ -60,6 +73,11 @@ const initialState: initialStateType = {
   //userData: {},
   error: null,
   userData: null,
+  offer: undefined,
+  neighbours: [],
+  nextReview: null,
+  reviews: [],
+  filterName: SortTypes.DEFAULT,
 };
 // eslint-disable-next-line no-console,@typescript-eslint/no-unsafe-member-access
 
@@ -67,6 +85,23 @@ const reducer = createReducer(initialState, (builder) => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   builder
+    .addCase(setcurrentOffersDefault, (state, action) => {
+      state.currentOffersDefault = state.currentOffers;
+      // eslint-disable-next-line no-console
+      console.log('state',state.currentOffersDefault.forEach((el) => console.log(el)));
+    })
+    .addCase(loadOfferById, (state, action) => {
+      state.offer = action.payload;
+    })
+    .addCase(loadNearOffers, (state, action) => {
+      state.neighbours = action.payload;
+    })
+    .addCase(loadReviews, (state, action) => {
+      state.reviews = action.payload;
+    })
+    .addCase(setNextReview, (state, action) => {
+      state.nextReview = action.payload;
+    })
     .addCase(loadCurrentOffer, (state, action) => {
       state.currentRoom = action.payload;
     })
@@ -86,6 +121,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setUserData, (state, action) => {
       state.userData = action.payload;
+    })
+    .addCase(sortPriceFilterName, (state, action) => {
+      state.filterName = action.payload;
     })
     .addCase(changeCityTest, (state,city: PayloadAction<string>) => {
       const findOffer = state.offers.find((offer) => state.cityTest.title === offer.city.name);
@@ -107,7 +145,10 @@ const reducer = createReducer(initialState, (builder) => {
       state.currentOffers = result;
     })
     .addCase(sortPriceFilter, (state,option: PayloadAction<string>) => {
-      if(option.payload === 'lowToHight') {
+      if(option.payload === 'popular') {
+        state.currentOffers = state.currentOffersDefault;
+      }
+      else if(option.payload === 'lowToHight') {
         const sortedArray = state.currentOffers.sort((a,b) => a.price - b.price);
         state.currentOffers = sortedArray;
       } else if (option.payload === 'hightToLow') {

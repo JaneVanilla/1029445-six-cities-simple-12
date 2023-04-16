@@ -1,52 +1,66 @@
-import {useRef, useEffect} from 'react';
-import {Icon, Marker} from 'leaflet';
+import { useRef, useEffect, useState } from 'react';
+import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../../const';
+import { FeatureGroup, Icon, Marker } from 'leaflet';
+import {City} from '../../types/city';
+import {Offer} from '../../types/offers';
 import useMap from '../../hooks/useMap';
 import 'leaflet/dist/leaflet.css';
-import {useAppSelector} from '../../hooks/index';
-
 
 type MapProps = {
-  selectedPoint: number | null;
-};
+  city: City;
+  offers: Offer[];
+  activeCardId?: null | number;
+  currentOffer?: Offer;
+  classNameMap: string | undefined;
+}
 
 const defaultCustomIcon = new Icon({
-  iconUrl: 'img/pin.svg',
+  iconUrl: URL_MARKER_DEFAULT,
   iconSize: [40, 40],
-  iconAnchor: [20, 40]
+  iconAnchor: [20, 40],
 });
 
 const currentCustomIcon = new Icon({
-  iconUrl: 'img/pin-active.svg',
+  iconUrl: URL_MARKER_CURRENT,
   iconSize: [40, 40],
-  iconAnchor: [20, 40]
+  iconAnchor: [20, 40],
 });
 
-function Map(props: MapProps): JSX.Element {
-  const city = useAppSelector((state) => state.cityTest);
-  const currentOffersReducer = useAppSelector((state) => state.currentOffers);
-  const {selectedPoint} = props;
+function Map({city, offers, activeCardId, currentOffer, classNameMap}: MapProps) {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
-  const currentCityReducer = useAppSelector((state) => state.cityTest);
+  const [markersGroup] = useState<FeatureGroup>(new FeatureGroup());
+
   useEffect(() => {
-    map?.flyTo([currentCityReducer.lat,currentCityReducer.lng]);
     if (map) {
-      currentOffersReducer.forEach((point) => {
+      offers.forEach((offer) => {
         const marker = new Marker({
-          lat: point.location.latitude,
-          lng: point.location.longitude
+          lat: offer.location.latitude,
+          lng: offer.location.longitude,
         });
-
-        marker
-          .setIcon(selectedPoint !== null && point.id === selectedPoint
-            ? currentCustomIcon
-            : defaultCustomIcon)
-          .addTo(map);
+        marker.setIcon((offer.id === activeCardId) ? currentCustomIcon : defaultCustomIcon);
+        markersGroup.addLayer(marker);
       });
-    }
-  }, [map, selectedPoint, city]);
 
-  return <div style={{height: '500px', width: '100%'}} ref={mapRef}></div>;
+      if (currentOffer) {
+        const marker = new Marker({
+          lat: currentOffer.location.latitude,
+          lng: currentOffer.location.longitude,
+        });
+        marker.setIcon(currentCustomIcon);
+        markersGroup.addLayer(marker);
+      }
+
+      markersGroup.addTo(map);
+      map.flyTo([city.location.latitude, city.location.longitude], city.location.zoom);
+    }
+
+    return () => {markersGroup.clearLayers(); };
+  }, [map, offers, activeCardId, currentOffer]);
+
+  return (
+    <section className={classNameMap} ref={mapRef}/>
+  );
 }
 
 export default Map;

@@ -1,16 +1,17 @@
-import {Review} from '../../types/reviews';
-type ReviewListItemType = {
-  review: Review;
-}
+import Review from '../../types/review';
 
-export default function ReviewListItem({review}:ReviewListItemType) {
+function ReviewListItem(review: Review): JSX.Element {
+  const reviewDate = new Date(review.date);
+
+  const monthName = reviewDate.toLocaleString('en-EN', { month: 'long' });
+  const reviewValueDate = review.date.substring(0, 10);
+  const reviewViewDate = `${monthName} ${reviewDate.getFullYear()}`;
+
   return (
-    <li key={review.id} className="reviews__item">
+    <li className="reviews__item" id={review.id.toString()}>
       <div className="reviews__user user">
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
-          <img className="reviews__avatar user__avatar" src={review.user.avatarUrl} width="54" height="54"
-            alt="Reviews avatar"
-          />
+          <img className="reviews__avatar user__avatar" src={review.user.avatarUrl} width="54" height="54" alt="Reviews avatar"/>
         </div>
         <span className="reviews__user-name">
           {review.user.name}
@@ -19,15 +20,17 @@ export default function ReviewListItem({review}:ReviewListItemType) {
       <div className="reviews__info">
         <div className="reviews__rating rating">
           <div className="reviews__stars rating__stars">
-            <span style={{width: '80%'}}></span>
+            <span style={{ width: `${(review.rating * 20)}%` }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <p className="reviews__text">
           {review.comment}
         </p>
-        <time className="reviews__time" dateTime="2019-04-24">{review.date}</time>
+        <time className="reviews__time" dateTime={reviewValueDate}>{reviewViewDate}</time>
       </div>
     </li>
   );
 }
+
+export default ReviewListItem;

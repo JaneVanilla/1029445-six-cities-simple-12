@@ -1,23 +1,16 @@
 import {Helmet} from 'react-helmet-async';
-import {Offers} from '../../types/offers';
 import {Reviews} from '../../types/reviews';
 import OfferFullInfo from '../../components/offer-full-info/offer-full-info';
 import Navigation from '../../components/navigation/navigation';
-import {City} from '../../types/city';
-import {useState} from 'react';
-import OffersList from '../../components/offers-list/offers-list';
 import {OffersNearby} from '../../types/offersNearby';
 import Header from '../../components/header/header';
 
 type RoomProps = {
-  offers: Offers;
   reviews: Reviews;
-  city: City;
   offersOpcion: OffersNearby;
 }
 
-export default function Room({offers, reviews, city, offersOpcion}: RoomProps) {
-  const [activeCard, setActiveCard] = useState<number | null>(null);
+export default function Room({reviews,offersOpcion}: RoomProps) {
   return (
     <div className="page">
       <Helmet>
@@ -46,13 +39,7 @@ export default function Room({offers, reviews, city, offersOpcion}: RoomProps) {
       <Header navigation={<Navigation/>}/>
 
       <main className="page__main page__main--property">
-        <OfferFullInfo offersOpcion={offersOpcion} offers={offers} reviews={reviews} city={city} activeCard={activeCard} />
-        <div className="container">
-          <section className="near-places places">
-            <h2 className="near-places__title">Other places in the neighbourhood</h2>
-            <OffersList offersOpcion={offersOpcion} onListItemHover={(id) => {setActiveCard(id); }} selectedPoint={activeCard} classesName={{list:'near-places__list',item:'near-places__card',image:'near-places__image-wrapper'}}></OffersList>
-          </section>
-        </div>
+        <OfferFullInfo/>
       </main>
     </div>
   );
