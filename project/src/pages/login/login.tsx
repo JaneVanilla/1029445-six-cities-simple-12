@@ -1,7 +1,7 @@
 import {Helmet} from 'react-helmet-async';
 import {Link} from'react-router-dom';
 import Header from '../../components/header/header';
-import {useRef, FormEvent} from 'react';
+import {useRef, FormEvent, useState} from 'react';
 //import {useNavigate} from 'react-router-dom';
 import {useAppDispatch} from '../../hooks';
 import {loginAction} from '../../store/api-actions';
@@ -14,19 +14,30 @@ export default function Login() {
 
   const dispatch = useAppDispatch();
   //const navigate = useNavigate();
+  const [passwordError, setPasswordError] = useState(false);
+  // eslint-disable-next-line no-console
+  console.log(passwordError);
+  const isPasswordValidate = (password: string): boolean => {
+    const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{2,}$/g;
+    return regex.test(password);
+  };
 
   const onSubmit = (authData: AuthData) => {
     dispatch(loginAction(authData));
   };
-
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
     if (loginRef.current !== null && passwordRef.current !== null) {
-      onSubmit({
-        login: loginRef.current.value,
-        password: passwordRef.current.value,
-      });
+      if (isPasswordValidate(passwordRef.current.value)) {
+        onSubmit({
+          login: loginRef.current.value,
+          password: passwordRef.current.value,
+        });
+        setPasswordError(false);
+      } else {
+        setPasswordError(true);
+      }
     }
   };
 
@@ -70,12 +81,14 @@ export default function Login() {
               </div>
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">Password</label>
-                <input className="login__input form__input" ref={passwordRef} type="password" minLength={1} name="password" placeholder="Password"
+                <input className='login__input form__input passwordError' ref={passwordRef} type="password" minLength={2} name="password" placeholder="Password"
                   required
                 />
+                {passwordError && <div className='hint password'>The pasword consist of at least one letter and a number</div>}
               </div>
               <button className="login__submit form__submit button" type="submit">Sign in</button>
             </form>
+
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">

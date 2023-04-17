@@ -1,11 +1,11 @@
 //import {useState} from 'react';
 import {Offers} from '../../types/offers';
-import {OffersNearby} from '../../types/offersNearby';
+//import {OffersNearby} from '../../types/offersNearby';
 import Card from '../card/card';
 
 type OffersListType = {
-  offersOpcion: Offers | OffersNearby;
-  onListItemHover: (listItemName: number) => void;
+  offersOpcion: Offers;
+  onListItemHover: (listItemName: number | null) => void;
   selectedPoint: number | null;
   classesName: {
     list: string;

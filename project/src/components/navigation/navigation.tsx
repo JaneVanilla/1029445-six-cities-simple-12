@@ -33,7 +33,7 @@ export default function Navigation() {
             dispatch(logoutAction());
           }}
           >
-            <span className="header__signout">Sign out</span>
+            <span className="header__signout">Log Out</span>
           </Link>
         </li>
       </ul>

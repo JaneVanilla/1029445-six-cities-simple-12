@@ -85,8 +85,10 @@ function ReviewForm(): JSX.Element {
         onChange={onReviewChangeHandle}
         value={review}
         disabled={isFormEnabled}
+        maxLength={300}
       >
       </textarea>
+      {review.length === MAX_CHARACTER_COMMENT && <div className='hint'>Maximum number of characters 300</div>}
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">{MIN_CHARACTER_COMMENT} characters</b>.

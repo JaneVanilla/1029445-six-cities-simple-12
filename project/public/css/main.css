@@ -14,3 +14,12 @@
   justify-content: center;
   height: 100%;
 }
+
+.hint {
+  font-size: 12px;
+  color: red;
+}
+.hint.password {
+  position: relative;
+  top:-15px;
+}

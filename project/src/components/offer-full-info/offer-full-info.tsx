@@ -36,12 +36,16 @@ export default function OfferFullInfo() {
     dispatch(fetchOfferByIdAction({ id : hotelId }));
     dispatch(fetchNearOffersAction({ id : hotelId }));
     dispatch(fetchReviewsAction({ id : hotelId }));
-  }, [id]);
+  }, [dispatch, id]);
 
 
   const cardType = currentOffer ? getValueByKey<PlaceTypes>(currentOffer.type, PlaceTypes) : '';
   const neighbours = useAppSelector((state) => state.neighbours);
   const [neighboringOffers, setNeighboringOffers] = useState<Offers>([]);
+  // eslint-disable-next-line no-console
+  console.log(neighboringOffers);
+  // eslint-disable-next-line no-console
+  console.log('neighbours',neighbours);
   useEffect(() => {
     setNeighboringOffers(neighbours);
   }, [neighbours, dispatch]);
@@ -144,7 +148,9 @@ export default function OfferFullInfo() {
       <div className="container">
         <section className="near-places places">
           <h2 className="near-places__title">Other places in the neighbourhood</h2>
-          <OffersList offersOpcion={neighboringOffers} onListItemHover={(e) => {setActiveCard(e); }} selectedPoint={activeCard} classesName={{list:'near-places__list',item:'near-places__card',image:'near-places__image-wrapper'}}></OffersList>
+          <OffersList offersOpcion={neighbours} onListItemHover={(e) => {setActiveCard(e); }} selectedPoint={activeCard} classesName={{list:'near-places__list',item:'near-places__card',image:'near-places__image-wrapper'}}></OffersList>
+
+          <OffersList classesName={{list:'tabs__content cities__places-list',item:'cities__card',image:'cities__image-wrapper'}} offersOpcion={neighbours} onListItemHover={(e) => setActiveCard(e)} selectedPoint={activeCard}/>
         </section>
       </div>
     </section>
