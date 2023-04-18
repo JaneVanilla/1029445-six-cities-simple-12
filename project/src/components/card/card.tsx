@@ -18,7 +18,7 @@ export default function Card({offer,onMouseOverHandler, classesName}: CardProps)
         <span>Premium</span>
       </div>}
       <div className={`place-card__image-wrapper ${classesName.image}`}>
-        <Link to={`offer/${offer.id}`}>
+        <Link to={`/offer/${offer.id}`}>
           <img className="place-card__image" src={offer.previewImage} width="260" height="200"
             alt="Place image"
           />
@@ -39,7 +39,7 @@ export default function Card({offer,onMouseOverHandler, classesName}: CardProps)
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`offer/${offer.id}`}>{offer.title}</Link>
+          <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
         </h2>
         <p className="place-card__type">{offer.type}</p>
       </div>

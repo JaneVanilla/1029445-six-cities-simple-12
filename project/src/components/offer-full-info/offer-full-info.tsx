@@ -149,8 +149,6 @@ export default function OfferFullInfo() {
         <section className="near-places places">
           <h2 className="near-places__title">Other places in the neighbourhood</h2>
           <OffersList offersOpcion={neighbours} onListItemHover={(e) => {setActiveCard(e); }} selectedPoint={activeCard} classesName={{list:'near-places__list',item:'near-places__card',image:'near-places__image-wrapper'}}></OffersList>
-
-          <OffersList classesName={{list:'tabs__content cities__places-list',item:'cities__card',image:'cities__image-wrapper'}} offersOpcion={neighbours} onListItemHover={(e) => setActiveCard(e)} selectedPoint={activeCard}/>
         </section>
       </div>
     </section>
