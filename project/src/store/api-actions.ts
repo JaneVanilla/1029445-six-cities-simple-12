@@ -23,9 +23,7 @@ import {store} from './';
 import Review from '../types/review';
 import { ReviewData } from '../types/review-data';
 
-export const fetchOfferByIdAction = createAsyncThunk<void, {
-  id: number;
-}, {
+export const fetchOfferByIdAction = createAsyncThunk<void, OfferId, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
